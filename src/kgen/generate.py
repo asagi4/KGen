@@ -33,6 +33,8 @@ def generate(
         tokenizer = models.tokenizer
     if isinstance(model, Llama):
         # print(kwargs)
+        # Reset model state before generating to keep things deterministic
+        model.reset()
         result = model.create_completion(
             prompt,
             temperature=temperature,
